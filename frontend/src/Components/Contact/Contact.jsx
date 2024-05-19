@@ -23,8 +23,7 @@ const Contact = () => {
     const data = await response.json();
 
     if (data.success) {
-      setResult("Form Submitted Successfully");
-      setResult(res.message)
+      setResult("Form Submitted Successfully");      
       event.target.reset();
     } else {
       console.log("Error", data);
@@ -52,7 +51,7 @@ const Contact = () => {
                 <label>Name</label>
                 <input type="text" name='name' placeholder='Enter your name' required />
                 <label>Email</label>
-                <input type="tel" name='phone' placeholder='Enter your Email' required />
+                <input type="tel" name='Email' placeholder='Enter your Email' required />
                 <label>Write your message here</label>
                 <textarea name="message" id="" rows="6" placeholder='Enter your message' required></textarea>
                 <button type='submit' className='btn darkbtn'>Submit</button>

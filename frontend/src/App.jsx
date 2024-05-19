@@ -7,6 +7,7 @@ import About from './Components/About/About'
 import Community from './Components/Community/Community'
 import Organization from './Components/Organizations/Organizations'
 import Contact from './Components/Contact/Contact'
+import Footer from './Components/Footer/Footer'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
          <Organization />
          <Title subTitle='Feel Free To Visit' Title='Contact Us'/>
          <Contact />
+         <Footer />
 
       </div>
     </div>

@@ -1,5 +1,5 @@
 {
-  "name": "recipe-book-website-api",
+  "name": "volunease_website-api",
   "version": "1.0.0",
   "type": "module",
   "description": "CRUD API for the Recipe book website.",
