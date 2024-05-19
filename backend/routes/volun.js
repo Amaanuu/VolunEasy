@@ -2,7 +2,7 @@
 import express from "express";
 import multer from "multer";
 import createError from "../utils/createError.js";
-import Recipe from "../models/recipe.model.js";
+import volun from "../models/volun.model.js";
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ const verifyToken = (req, res, next) => {
   
   const upload = multer({ storage: storage });
   
-  // Create recipe
+  // Create volun
   // router.post("/", verifyToken, async (req, res, next) => {
   router.post("/", upload.single("image"), async (req, res, next) => {
     const { title, desc } = req.body;
@@ -37,14 +37,14 @@ const verifyToken = (req, res, next) => {
         throw createError(400, "Title, description, and image are required");
       }
   
-      const newRecipe = new Recipe({
+      const newvolun = new volun({
         title,
         desc,
         image: image.path, // Save the path to the image in the database
       });
   
-      const savedRecipe = await newRecipe.save();
-      res.status(201).json(savedRecipe);
+      const savedvolun = await newvolun.save();
+      res.status(201).json(savedvolun);
     } catch (err) {
       next(err);
     }
@@ -52,57 +52,57 @@ const verifyToken = (req, res, next) => {
   
   
 
-// Update recipe
+// Update volun
 router.put("/:id", verifyToken, async (req, res, next) => {
   try {
-    const recipe = await recipe.findById(req.params.id);
+    const volun = await volun.findById(req.params.id);
 
-    if (recipe.userId !== req.userId) {
-      return next(createError(403, "You can't update another person's recipe"));
+    if (volun.userId !== req.userId) {
+      return next(createError(403, "You can't update another person's volun"));
     }
 
-    await recipe.findByIdAndUpdate(req.params.id, {
+    await volun.findByIdAndUpdate(req.params.id, {
       $set: req.body,
     });
-    res.status(200).json("Recipe has been updated");
+    res.status(200).json("volun has been updated");
   } catch (err) {
-    return next(createError(500, "Recipe not updated"));
+    return next(createError(500, "volun not updated"));
   }
 });
 
-// Delete recipe
+// Delete volun
 router.delete("/:id", verifyToken, async (req, res, next) => {
   try {
-    const recipe = await recipe.findById(req.params.id);
-    if (recipe.userId !== req.userId) {
-      return next(createError(403, "You can delete only your recipe!"));
+    const volun = await volun.findById(req.params.id);
+    if (volun.userId !== req.userId) {
+      return next(createError(403, "You can delete only your volun!"));
     }
 
-    await recipe.findByIdAndDelete(req.params.id);
-    res.status(200).send("Recipe has been deleted!");
+    await volun.findByIdAndDelete(req.params.id);
+    res.status(200).send("volun has been deleted!");
   } catch (err) {
     next(err);
   }
 });
 
-// Get recipe by ID
+// Get volun by ID
 router.get("/:id", async (req, res, next) => {
   try {
-    const recipe = await recipe.findById(req.params.id);
-    if (!recipe) {
-      return next(createError(404, "Recipe not found!"));
+    const volun = await volun.findById(req.params.id);
+    if (!volun) {
+      return next(createError(404, "volun not found!"));
     }
-    res.status(200).json(recipe);
+    res.status(200).json(volun);
   } catch (err) {
     next(err);
   }
 });
 
-// Get all recipes
+// Get all voluns
 router.get("/", async (req, res) => {
   try {
-    const recipes = await Recipe.find();
-    res.status(200).json(recipes);
+    const voluns = await volun.find();
+    res.status(200).json(voluns);
   } catch (err) {
     res.status(500).json(err);
   }

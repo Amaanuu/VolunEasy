@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoute from "./routes/users.js";
 import authRoute from "./routes/auth.js";
-import recipeRoute from "./routes/recipe.js";
+import volunRoute from "./routes/volun.js";
+import eventRoute from "./routes/event.js";
 import uploadRoute from "./routes/upload.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -31,7 +32,8 @@ app.use(cookieParser());
 // Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/recipe", recipeRoute);
+app.use("/api/volun", volunRoute);
+app.use("/api/event", eventRoute);
 app.use('/api', uploadRoute);
 
 // Error handling middleware

@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
-      unique: false,
+      unique: true,
     },
     desc: {
       type: String,
@@ -16,14 +16,14 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    username: {
+    adress: {
       type: String,
       required: true,
     },
  
-    categories: {
+    contact: {
       type: Array,
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }
